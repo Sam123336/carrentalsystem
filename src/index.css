@@ -2,3 +2,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom CSS for card hover effect */
+.car-card {
+  position: relative; /* Set position relative for shadow effect */
+  overflow: visible; /* Allow the image to overflow */
+  border-radius: 15px; /* Rounded corners for the card */
+}
+
+/* Hover effect for scaling the entire card */
+.car-card:hover {
+    transition: transform 0.3s ease;
+  transform: scale(1.05); /* Slightly scale the card */
+}
+
+/* Custom CSS for shadow zoom effect */
+.car-image-container {
+  position: relative; /* Position for the shadow effect */
+  overflow: visible; /* Allow overflow for the image */
+}
+
+/* Clip-path for the car image container */
+.car-image {
+  transition: transform 0.3s ease; /* Transition for smooth effect */
+  border-radius: 15px; /* Same border radius to match the container */
+  position: relative; /* Required for absolute positioning on hover */
+}
+
+/* Shadow effect on hover */
+
+/* Scale effect on hover */
+.car-image-container:hover .car-image {
+  transform: scale(1.1); /* Scale the image */
+}
+/* Add this to your CSS file (e.g., tailwind.css or global.css) */
+@keyframes zoomOut {
+    0% {
+      transform: scale(1.2); /* Start slightly larger */
+    }
+    100% {
+      transform: scale(1); /* End at normal size */
+    }
+  }
+  
+  .animate-zoom-out {
+    animation: zoomOut 1s forwards; /* Duration of the animation */
+  }
+  
