@@ -2,25 +2,33 @@ import React, { useRef } from 'react';
 import { motion, useScroll } from 'framer-motion';
 
 import BMW from "./images/BMW.png";
-import Cadillac from "./images/cadalic.png";
+import Cadillac from "./images/car.png";
 import Lamborghini from "./images/Lamborghini.png";
 import jeep from "./images/jeep.png";
 import ford from "./images/ford.png";
 import nisaan from "./images/nisaan.png";
+import car from "./images/car12.png";
 
 function IconSection() {
   const brands = [
    
     { name: 'Brand 2', image: Cadillac },
     { name: 'Brand 3', image: Lamborghini },
+    { name: 'Brand 4', image: car},
     { name: 'Brand 2', image: Cadillac },
+    { name: 'Brand 3', image: Lamborghini },
+    { name: 'Brand 4', image: car},
     { name: 'Brand 2', image: Cadillac },
+    { name: 'Brand 3', image: Lamborghini },
+    { name: 'Brand 4', image: car},
     { name: 'Brand 2', image: Cadillac },
+    { name: 'Brand 3', image: Lamborghini },
+    { name: 'Brand 4', image: car},
     { name: 'Brand 2', image: Cadillac },
-    { name: 'Brand 2', image: Cadillac },
-    { name: 'Brand 2', image: Cadillac },
-    { name: 'Brand 2', image: Cadillac },
-    { name: 'Brand 2', image: Cadillac },
+    { name: 'Brand 3', image: Lamborghini },
+    { name: 'Brand 4', image: car},
+   
+   
     { name: 'Brand 5', image: ford },
     
   ];
@@ -38,7 +46,7 @@ function IconSection() {
           overflowY: 'hidden',
           paddingBottom: '10px',
           margin: '0',
-          height: '400px', // Adjusted for larger component height
+          height: '200px', // Adjusted for larger component height
         }}
       >
         {brands.map((brand, index) => (
@@ -50,7 +58,7 @@ function IconSection() {
             <img
               src={brand.image}
               alt={`${brand.name} car`}
-              className="w-80 h-64 mx-auto mb-4" // Adjusted image size
+              className="w-96 h-56 mx-auto mb-4" // Adjusted image size
             />
             <div className="text-lg font-semibold">{brand.name}</div> {/* Slightly larger font for brand name */}
           </motion.li>

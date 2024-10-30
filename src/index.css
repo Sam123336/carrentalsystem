@@ -101,3 +101,11 @@ img {
   -ms-overflow-style: none;  /* For Internet Explorer and Edge */
   scrollbar-width: none;     /* For Firefox */
 }
+.glass-card {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Blur effect for frosted glass */
+  border-radius: 16px; /* Rounded corners */
+  color: rgba(255, 255, 255, 0.9); /* Text color with opacity */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for added depth */
+}

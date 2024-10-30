@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'; 
-import heroImage from './images/car1.png'; // Adjust the path based on your directory structure
+import heroImage from './images/car.png'; // Adjust the path based on your directory structure
 
 
 
