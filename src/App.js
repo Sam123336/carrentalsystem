@@ -1,7 +1,7 @@
 // src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { RentedCarsProvider } from './components/context/RentedCarsContext';
+import { RentedCarsProvider } from "./components/context/RentedCarsContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -20,6 +20,7 @@ function App() {
         <div className="bg-gray-900 text-white font-sans">
           <Header />
           <Routes>
+            {/* Home Page Route */}
             <Route 
               path="/" 
               element={
@@ -33,7 +34,9 @@ function App() {
                 </>
               } 
             />
+            {/* Car List Route */}
             <Route path="/cars" element={<CarListPage />} />
+            {/* Rented Cars Route */}
             <Route path="/rented" element={<Rented />} />
           </Routes>
           <Footer />

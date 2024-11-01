@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import CarCard from "./CarCard";
 import BMW from "./images/BMW.png";
 import Cadillac from "./images/cadalic.png";
-import Lamborghini from "./images/Lamborghini.png"; //
+import Lamborghini from "./images/Lamborghini.png";
 import jeep from "./images/jeep.png";
 import ford from "./images/ford.png";
 import nisaan from "./images/nisaan.png";
+
 function CarListPage() {
- 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCar, setSelectedCar] = useState(null);
   const [pickUpDate, setPickUpDate] = useState("");
@@ -37,7 +37,7 @@ function CarListPage() {
           placeholder="Search for a car..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400"
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

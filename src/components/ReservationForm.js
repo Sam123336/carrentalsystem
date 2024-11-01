@@ -33,12 +33,12 @@ function ReservationForm({ onClose }) {
     const reservedCar = availableCars.find(car => car.name === selectedCar);
 
     if (reservedCar) {
-      // Add rented car to context
+      // Add rented car to context with consistent `image` property
       addRentedCar({
         name: reservedCar.name,
         rentalDate: new Date().toISOString().split('T')[0], // today's date
         cost: reservedCar.cost,
-        imgSrc: reservedCar.imgSrc
+        image: reservedCar.imgSrc // Use `image` key instead of `imgSrc`
       });
 
       // Send confirmation email
