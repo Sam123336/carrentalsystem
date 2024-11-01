@@ -1,6 +1,7 @@
 // src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { RentedCarsProvider } from './components/context/RentedCarsContext';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -14,29 +15,31 @@ import Rented from "./components/Rented";
 
 function App() {
   return (
-    <Router>
-      <div className="bg-gray-900 text-white font-sans">
-        <Header />
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <>
-                <HeroSection />
-                <SearchSection />
-                <IconSection />
-                <WorkingSteps />
-                <ExperienceSection />
-                <FeaturedCars />
-              </>
-            } 
-          />
-          <Route path="/cars" element={<CarListPage />} />
-          <Route path="/rented" element={<Rented />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <RentedCarsProvider>
+      <Router>
+        <div className="bg-gray-900 text-white font-sans">
+          <Header />
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <>
+                  <HeroSection />
+                  <SearchSection />
+                  <IconSection />
+                  <WorkingSteps />
+                  <ExperienceSection />
+                  <FeaturedCars />
+                </>
+              } 
+            />
+            <Route path="/cars" element={<CarListPage />} />
+            <Route path="/rented" element={<Rented />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </RentedCarsProvider>
   );
 }
 

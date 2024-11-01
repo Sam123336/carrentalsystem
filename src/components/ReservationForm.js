@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+// src/components/ReservationForm.js
+import React, { useState, useContext } from 'react';
+import { RentedCarsContext } from './context/RentedCarsContext'; // Adjust the import path if necessary
 import BMW from "./images/BMW.png";
 import Cadillac from "./images/cadalic.png";
 import Lamborghini from "./images/Lamborghini.png";
-import jeep from "./images/jeep.png";
-import ford from "./images/ford.png";
-import nisaan from "./images/nisaan.png";
+import Jeep from "./images/jeep.png";
+import Ford from "./images/ford.png";
+import Nissan from "./images/nisaan.png";
 
 function ReservationForm({ onClose }) {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [selectedCar, setSelectedCar] = useState('');
+  const { addRentedCar } = useContext(RentedCarsContext); // Use context to add rented car
 
   const availableCars = [
     { name: 'BMW', imgSrc: BMW, cost: '$150/day' },
     { name: 'Cadillac', imgSrc: Cadillac, cost: '$200/day' },
-    { name: 'Ford', imgSrc: ford, cost: '$120/day' },
-    { name: 'Jeep', imgSrc: jeep, cost: '$140/day' },
+    { name: 'Ford', imgSrc: Ford, cost: '$120/day' },
+    { name: 'Jeep', imgSrc: Jeep, cost: '$140/day' },
     { name: 'Lamborghini', imgSrc: Lamborghini, cost: '$300/day' },
-    { name: 'Nissan', imgSrc: nisaan, cost: '$100/day' }
+    { name: 'Nissan', imgSrc: Nissan, cost: '$100/day' },
   ];
 
   const handleReserve = async (e) => {
@@ -26,44 +29,56 @@ function ReservationForm({ onClose }) {
       alert('Please select a car.');
       return;
     }
-    try {
-      const response = await fetch('http://localhost:5000/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: email,
-          subject: `Reservation Confirmation for ${firstName}`,
-          text: `Thank you for reserving a ${selectedCar} with us. Check your email for details.`
-        })
+
+    const reservedCar = availableCars.find(car => car.name === selectedCar);
+
+    if (reservedCar) {
+      // Add rented car to context
+      addRentedCar({
+        name: reservedCar.name,
+        rentalDate: new Date().toISOString().split('T')[0], // today's date
+        cost: reservedCar.cost,
+        imgSrc: reservedCar.imgSrc
       });
 
-      const result = await response.json();
+      // Send confirmation email
+      try {
+        const response = await fetch('http://localhost:5000/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: email,
+            subject: `Reservation Confirmation for ${firstName}`,
+            text: `Thank you for reserving a ${reservedCar.name} with us. Check your email for details.`
+          })
+        });
 
-      if (response.ok) {
-        alert('Book a car\n\nCheck your email to confirm the order.');
-        console.log('Email Preview URL:', result.previewUrl); 
-      } else {
-        alert('Error sending email: ' + result.message);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('Email Preview URL:', result.previewUrl); // Log the preview URL if needed
+
+        alert(`Reservation for ${reservedCar.name} confirmed. Check your email for confirmation.`);
+      } catch (error) {
+        console.error('Error sending email:', error);
+        alert('Failed to send confirmation email. Please try again.');
       }
-
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to send email');
     }
 
-    onClose(); 
+    onClose();
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center modal-background">
       <form onSubmit={handleReserve} className="relative space-y-4 modal-form p-6 rounded shadow-lg max-w-md w-full">
         
-        {/* Cut button */}
-        <button onClick={onClose} 
-                className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl">
+        {/* Close button */}
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl">
           ✂
         </button>
-        
+
         <h2 className="text-2xl font-bold">Complete Reservation</h2>
         <p className="text-sm text-gray-400">
           Upon completing this reservation enquiry, you will receive:
