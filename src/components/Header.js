@@ -10,7 +10,7 @@ function Header() {
         <div className="flex space-x-4">
           <Link to="/" className="text-gray-300 hover:text-white">Home</Link>
           <Link to="/cars" className="text-gray-300 hover:text-white">Cars</Link>
-          <Link to="/contact" className="text-gray-300 hover:text-white">Contact</Link>
+          <Link to="/rented" className="text-gray-300 hover:text-white">Rented</Link>
           <Link to="/login" className="text-gray-300 hover:text-white">Login</Link>
         </div>
       </nav>

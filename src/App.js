@@ -10,6 +10,7 @@ import WorkingSteps from "./components/WorkingSteps";
 import ExperienceSection from "./components/ExperienceSection";
 import FeaturedCars from "./components/FeaturedCars";
 import CarListPage from "./components/CarListPage";
+import Rented from "./components/Rented";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             } 
           />
           <Route path="/cars" element={<CarListPage />} />
+          <Route path="/rented" element={<Rented />} />
         </Routes>
         <Footer />
       </div>

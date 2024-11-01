@@ -109,3 +109,24 @@ img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for added depth */
 }
+/* Make modal background completely dark */
+.modal-background {
+  background-color: rgba(0, 0, 0, 0.85); /* Dark overlay */
+}
+
+/* Ensure form background is fully dark without borders */
+.modal-form {
+  background-color: #1a1a1a; /* Dark form background */
+  color: #e0e0e0; /* Light text color for contrast */
+  border: none; /* Remove any borders */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Subtle shadow */
+}
+
+/* Remove outline on focus */
+.modal-form input:focus, 
+.modal-form button:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
